@@ -1,0 +1,28 @@
+.sidebar {
+    display: grid;
+    grid-area: n;
+    background-color: burlywood;
+    border-radius: 20px;
+    width: 200px;
+    height: 500px;
+
+    font-size: 22px;
+    grid-template-columns:  1fr ;
+    grid-template-rows: 50% 50%;
+    text-align: center;
+    align-items: center;
+}
+
+.item a {
+    color: white;
+    text-decoration: none;
+}
+
+.item a.activeLink {
+    color: gold;
+}
+
+.friends {
+    color: sandybrown;
+
+}
