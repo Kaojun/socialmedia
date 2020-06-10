@@ -1,6 +1,16 @@
-import React, {useEffect, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 
-const ProfileStatusHooks = (props) => {
+
+type PropsType = {
+	editMode:boolean
+	status:string
+	updateStatus: (newStatus:string) => void
+
+}
+
+const ProfileStatusHooks = (props:PropsType) => {
+
+
 
 
 	let [editMode , setEditMode] = useState(false)          // едитмод = фолс / сетедитмод -фукнция,меняеет едитмод
@@ -17,7 +27,7 @@ const ProfileStatusHooks = (props) => {
 		setEditMode(false)
 		props.updateStatus(status)
 	}
-	const onStatusChange = (e) =>{
+	const onStatusChange = (e:ChangeEvent<HTMLInputElement>) =>{
 		setStatus(e.currentTarget.value)
 	}
 
@@ -26,7 +36,7 @@ const ProfileStatusHooks = (props) => {
 			<div>
 				{ !editMode &&
 				<div>
-					<span onDoubleClick={activateMode}>  {props.status || "----"} </span>
+				 <b>Status</b>	<span onDoubleClick={activateMode}>  {props.status || "----"} </span>
 				</div>
 				}
 				{editMode &&  <div> <input autoFocus={true}

@@ -3,12 +3,12 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 import {Field, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../utils/validators/validators";
-import {FormControl, Textarea} from "../../common/FormsControls/FormsControls";
+import {FormControl} from "../../common/FormsControls/FormsControls";
 
 const MyPosts = (props) => {
 
 	let postsElements =
-		props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
+		props.posts.map(p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
 
 	let onAddPost = (value) => {debugger
 		props.addPost(value.AddPostBody)

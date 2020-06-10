@@ -2,10 +2,24 @@ import React from 'react'
 import styles from "./Users.module.css";
 import userPhoto from "../../logo.svg";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../api/api";
 import {Paginator} from "../common/Paginator/paginator";
+import {UserType} from '../../types/types';
 
-let Users = ({currentPage ,totalUsersCount,pageSize,onPageChanged, ...props}) => {
+
+
+type PropsType ={
+	totalUsersCount:number
+	pageSize:number
+	currentPage:number
+	onPageChanged: (page:number) => void
+	users: Array<UserType>
+	followingInProgress:Array<number>
+	unfollowThunkCreator: (id:number) =>void
+	followThunkCreator:(id:number) =>void
+
+}
+
+let Users: React.FC<PropsType> = ({currentPage ,totalUsersCount,pageSize,onPageChanged, ...props}) => {
 
 	return <div>
 
