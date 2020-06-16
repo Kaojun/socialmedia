@@ -13,7 +13,6 @@ const ProfileDataForm = ({ handleSubmit,profile ,error}) => {
 								{error}
 						</div>}
 				</div>
-
 				<div>
 						<b>Full name :</b> {<Field typeF="input" placeholder={"dsd"} name={"fullName"} component={FormControl}/>}
 				</div>

@@ -5,8 +5,6 @@ import {NavLink} from "react-router-dom";
 import {Paginator} from "../common/Paginator/paginator";
 import {UserType} from '../../types/types';
 
-
-
 type PropsType ={
 	totalUsersCount:number
 	pageSize:number
@@ -36,7 +34,7 @@ let Users: React.FC<PropsType> = ({currentPage ,totalUsersCount,pageSize,onPageC
 
 
 												{g.followed ?           // проверка на фоллоу из стейта
-													<button disabled={props.followingInProgress.some(id => id == g.id)} onClick={() => { //дизейб если айди тру
+													<button  disabled={props.followingInProgress.some(id => id == g.id)} onClick={() => { //дизейб если айди тру
 														props.unfollowThunkCreator(g.id)
 													}}>UNFOLLOW</button>
 													: <button disabled={props.followingInProgress.some(id => id == g.id)} onClick={() => {

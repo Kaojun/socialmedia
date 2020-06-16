@@ -16,7 +16,7 @@ const ProfileInfo = ({profile, isOwner, updateStatus, savePhoto, status , savePr
 
 		}
 
-		useEffect ( () =>{             debugger           // при приходе статуса с сервера он сетится в стейт и перерисовывает
+		useEffect ( () =>{                    // при приходе статуса с сервера он сетится в стейт и перерисовывает
 				setEditMode(false)
 		}, [formUpdate])
 		if(!profile) {

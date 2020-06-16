@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
@@ -15,14 +15,12 @@ import {withSuspense} from "./hoc/WIthSuspense";
 
 const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer')); // лези по запросу сделает запрос с сервака
 // чтобы подгрузить компоненту
-class App extends React.Component {
-		componentDidMount () {              // срабатывает один раз при монтаже
-				this.props.initializeApp()
 
-		}
 
-		render () {
-				if(!this.props.initialized)
+
+const App= (props) => {
+		useEffect(props.initializeApp)
+		if(!props.initialized)
 						return <Preloader/>
 				return (
 						 <div className='app-wrapper'>
@@ -41,7 +39,6 @@ class App extends React.Component {
 						 </div>
 				)
 		}
-}
 
 const mapStateToProps = (state) => ({
 		initialized: state.app.initialized

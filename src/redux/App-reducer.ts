@@ -1,15 +1,13 @@
 import {getAuthUserData} from "./Auth-reducer";
-const SET_INITIALIZED_SUCCES = 'SET_INITIALIZED_SUCCES';
-export type InitialStateType = {
-    initialized: boolean
-}
-
-let initialState: InitialStateType = {
+import { InferActionsTypes } from "./redux-store";
+//local state
+let initialState = {
     initialized: false
 }
-const appReducer = (state = initialState, action: any):InitialStateType => {
+// reducer
+const appReducer = (state = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {
-        case SET_INITIALIZED_SUCCES:
+        case "SET_INITIALIZED_SUCCESS":
             return {
                 ...state,
                 initialized: true
@@ -18,18 +16,21 @@ const appReducer = (state = initialState, action: any):InitialStateType => {
             return state;
     }
 }
-type initializedSuccessActionType = {
-    type: typeof SET_INITIALIZED_SUCCES
+// actions
+export const actions = {
+    initializedSuccess: () => ({type: "SET_INITIALIZED_SUCCESS"} as const)
 }
-export const initializedSuccess = ():initializedSuccessActionType => ({type: SET_INITIALIZED_SUCCES});
-
-
+// thunks
 export const initializeApp = () => (dispatch: any) => {                     // инициализация для App
     let promise = dispatch(getAuthUserData())
     Promise.all([promise])
         .then(() => {
-                dispatch(initializedSuccess())
+                dispatch(actions.initializedSuccess())
             }
         )
 }
+// TS
+export type InitialStateType = typeof initialState
+type ActionTypes = InferActionsTypes <typeof actions>
+
 export default appReducer
